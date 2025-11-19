@@ -1,32 +1,36 @@
 -- made it a little more readable than before
+-- i realized that connect wasnt working
 
 local signal = {}
+signal.__index = signal
 
 function signal.new()
-    local s = setmetatable({}, signal)
-    s.connections = {}
-    return s
+    local self = setmetatable({}, signal)
+    self.connections = {}
+    return self
+end
+
+function signal:connect(func)
+    if type(func) ~= "function" then error("u need a function", 2) end
+    local key = {}
+    self.connections[key] = func
+    return {
+        disconnect = function()
+            self.connections[key] = nil
+        end
+    }
 end
 
 function signal:fire(...)
-    for i = 1, #self.connections do
-        local f = self.connections[i]
-        if f then f(...) end
+    for _, func in pairs(self.connections) do
+        func(...)
     end
-end
-
-function signal:connect(f)
-    if type(f) ~= "function" then error("u a need function", 2) end
-    table.insert(self.connections, f)
-    local i = #self.connections
-    return {disconnect = function() self.connections[i] = nil end}
 end
 
 function signal:destroy()
-    for i = 1, #self.connections do
-        self.connections[i] = nil
-    end
+    self.connections = {}
     setmetatable(self, nil)
 end
 
 return signal
+
