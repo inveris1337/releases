@@ -1,0 +1,26 @@
+  local sig = {}
+    function sig.new()
+        local s = setmetatable({}, sig)
+        s.c = {}
+        return s
+    end
+
+    function sig:fire(...)
+        for i = 1, #self.c do
+            local f = self.c[i]
+            if f then f(...) end
+        end
+    end
+
+    function sig:connect(f)
+        if type(f) ~= "function" then error("u a need function", 2) end
+        table.insert(self.c, f)
+        local i = #self.c
+        return {disconnect = function() self.c[i] = nil end}
+    end
+
+    function sig:destroy()
+        for i = 1, #self.c do self.c[i] = nil end
+        setmetatable(self, nil)
+    end
+return sig
