@@ -170,8 +170,12 @@ local utils = {} do
         s.Volume = vol
         s.PlaybackSpeed = spd
         s:Play()
-        game:GetService("Debris"):AddItem(s, 5)
+        s.Ended:Connect(function()
+            s:Destroy()
+        end)
     end
+
+    -- ^^ oopsies made a woopsies
    
     function utils.connect(name, ev, cb)
         if not name or not ev or not cb then return end
