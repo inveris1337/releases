@@ -188,11 +188,15 @@ local utils = {} do
     --[[utils.connect("something", game:GetService("RunService").RenderStepped, function()
         print("hi")
     end)]]
-    function utils.get_screen_center()
+    --?? dmb ass
+    --[[function utils.get_screen_center()
         local v = cam.ViewportSize
         return Vector2.new(v.X * .5, v.Y * .5)
+    end]]
+    function utils.get_screen_center()
+        return Vector2.new(cam.ViewportSize.X / 2, cam.ViewportSize.Y / 2)
     end
-    
+
     function utils.get_mouse_pos()
         local m = localplayer:GetMouse()
         return Vector2.new(m.X, m.Y)
