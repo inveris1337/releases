@@ -189,10 +189,6 @@ local utils = {} do
         print("hi")
     end)]]
     --?? dmb ass
-    --[[function utils.get_screen_center()
-        local v = cam.ViewportSize
-        return Vector2.new(v.X * .5, v.Y * .5)
-    end]]
     function utils.get_screen_center()
         return Vector2.new(cam.ViewportSize.X / 2, cam.ViewportSize.Y / 2)
     end
