@@ -103,6 +103,5 @@ local function TableToString(Table, IgnoredTables, DepthData, Path)
 
 	return IsEmpty and Result .. '}' or string.sub(Result,  1, -2) .. '\n' .. TrailingTab .. '}'
 end
-module:convert_tostring = TableToString
-
+module.convert_tostring = TableToString
 return module
