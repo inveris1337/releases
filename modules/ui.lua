@@ -34,6 +34,7 @@ do
     local coregui = cloneref(game:GetService("CoreGui"))
     local debris = cloneref(game:GetService("Debris"))
     local tween_service = cloneref(game:GetService("TweenService"))
+    local players = cloneref(game:GetService("Players"))
     local sound_service = cloneref(game:GetService("SoundService"))
     local starter_gui = cloneref(game:GetService("StarterGui"))
     local rs = cloneref(game:GetService("ReplicatedStorage"))
