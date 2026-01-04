@@ -584,10 +584,9 @@ do
 
         local sgui = library:create("ScreenGui", {
             Enabled = true,
-            Parent = nil,
+            Parent = gethui() or game.CoreGui,
             Name = "" 
         })
-        parentUI(sgui)
 
         local main_holder = library:create("Frame", {
             Parent = sgui,
@@ -746,11 +745,10 @@ do
 
     local sgui = library:create("ScreenGui", {
         Enabled = true,
-        Parent = nil,
+        Parent = gethui() or game.CoreGui,
         Name = "",
         DisplayOrder = 2, 
     })
-    parentUI(sgui)
 
     function library:fold_elements(origin, elements)
         for _, x in next, elements do 
@@ -1404,14 +1402,12 @@ do
     end 
 
     local notif_holder = library:create("ScreenGui", {
-        Parent = nil,
+        Parent = gethui() or game.CoreGui,
         Name = "",
         IgnoreGuiInset = true, 
         DisplayOrder = -1, 
         ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     })
-    parentUI(notif_holder)
-
     function library:refresh_notifications()  	
         for _, notif in next, library.notifications do 
             tween_service:Create(notif, TweenInfo.new(0.3, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {Position = dim2(0, 20, 0, 72 + (_ * 28))}):Play()
